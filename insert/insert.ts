@@ -1,5 +1,3 @@
-import { data } from "./data.ts";
-
 export const createKey = (str: string): string[] => {
   if (!str) return [];
 
@@ -17,5 +15,3 @@ export const createKey = (str: string): string[] => {
 export const createKeyValuePair = (value: string) => {
   return [createKey(value), value];
 };
-
-data.map(createKeyValuePair);
