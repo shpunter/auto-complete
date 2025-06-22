@@ -6,7 +6,6 @@
     "@std/assert": "jsr:@std/assert@1"
   },
   "deploy": {
-    "include": ["deno.json"],
     "entrypoint": "./src/main.ts"
   }
 }
