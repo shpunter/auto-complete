@@ -31,11 +31,6 @@ jobs:
       - name: Install step
         run: "deno install"
 
-      - name: List files in src directory
-        run: |
-          ls -la src/
-          ls -la src/main.ts
-
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
