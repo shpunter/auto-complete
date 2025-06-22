@@ -7,6 +7,6 @@
   },
   "deploy": {
     "include": ["deno.json"],
-    "entrypoint": "./main.ts"
+    "entrypoint": "./src/main.ts"
   }
 }

@@ -36,6 +36,6 @@ jobs:
         with:
           project: "auto-complete"
           entrypoint: "./main.ts"
-          root: "./"
+          root: "./src"
           
           
