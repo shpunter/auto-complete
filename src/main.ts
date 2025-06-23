@@ -34,8 +34,9 @@ app.get("/api/search/:search", async (c) => {
   });
 });
 
-app.get("/api/generate-and-insert/", async (c) => {
-  const data = await generate();
+app.get("/api/generate-and-insert/:number", async (c) => {
+  const { number } = c.req.param();
+  const data = await generate(+number);
   const array = JSON.parse(data.text ?? "[]") as string[];
 
   for (let i = 0; i < array.length; i++) {
