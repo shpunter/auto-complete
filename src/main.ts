@@ -1,4 +1,5 @@
 import { Hono } from "jsr:@hono/hono";
+import { HTTPException } from "jsr:@hono/hono/http-exception";
 import { cors } from "jsr:@hono/hono/cors";
 import { createKey, createKeyValuePair } from "./utils/utils.ts";
 import { generate } from "./insert/generateStrings.ts";
@@ -34,9 +35,12 @@ app.get("/api/search/:search", async (c) => {
   });
 });
 
-app.get("/api/generate-and-insert/:number", async (c) => {
-  const { number } = c.req.param();
-  const data = await generate(+number);
+app.get("/api/generate-and-insert/:number/:type", async (c) => {
+  const { number, type } = c.req.param();
+
+  if (type !== "pair" && type !== "sentences") throw new HTTPException(404, { message: "type is not supported" })
+
+  const data = await generate(+number, type);
   const array = JSON.parse(data.text ?? "[]") as string[];
 
   for (let i = 0; i < array.length; i++) {
