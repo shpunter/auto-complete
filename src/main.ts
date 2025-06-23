@@ -29,7 +29,7 @@ app.get("/api/search/:search", async (c) => {
   const list = await Array.fromAsync(kv.list({ prefix: key }, { limit: 10 }));
 
   return c.json({
-    list,
+    list: list.map(({ value }) => value),
   });
 });
 
