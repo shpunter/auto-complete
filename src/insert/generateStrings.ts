@@ -5,7 +5,7 @@ const ai = new GoogleGenAI({ apiKey });
 
 export const generate = async (number: number, type: ContentsType) => {
   const contents = {
-    pair: `Create noun + adjective. 1 noun and 1-2 adjectives. Start with capital letter`,
+    pair: `Create ${number} of elements (noun + adjective). 1 noun and 1-2 adjectives. Start with capital letter`,
     sentences:
       `Create a ${number} sentences. Each contains up to 5 words. Max 5 words. Start with capital letter`,
   } as const;
