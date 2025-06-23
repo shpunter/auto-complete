@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert";
-import { createKey } from "../insert.ts";
+import { createKey } from "../utils.ts";
 
 Deno.test("createKey handles a standard string correctly", () => {
   const input = "hello";
