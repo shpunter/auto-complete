@@ -56,7 +56,7 @@ app.get("/api/generate-and-insert/:number/:type", async (c) => {
   });
 });
 
-app.get("/api/generate-and-insert-loop/:number/", async (c) => {
+app.get("/api/loop/:number/", async (c) => {
   const { number } = c.req.param();
   let count = +number;
 
