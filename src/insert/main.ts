@@ -1,9 +1,7 @@
-import { createKey } from "../utils/utils.ts";
-import { generate } from "./createStrings.ts";
+import { createKeyValuePair } from "../utils/utils.ts";
+// import { generate } from "./generateStrings.ts";
 
-export const createKeyValuePair = (value: string) => {
-  return { key: createKey(value), value: value };
-};
+const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
 export const insert = async (array: string[]) => {
   for (let i = 0; i < array.length; i++) {
@@ -26,14 +24,13 @@ export const selectBy = async () => {
 };
 
 //  deleteAll();
-const kv = await Deno.openKv(Deno.env.get("DENO_KV_PATH"));
 
-generate().then((data) => {
-  const array = JSON.parse(data.text ?? "[]") as string[];
+// generate().then((data) => {
+//   const array = JSON.parse(data.text ?? "[]") as string[];
 
-  for (let i = 0; i < array.length; i++) {
-    const { key, value } = createKeyValuePair(array[i]);
+//   for (let i = 0; i < array.length; i++) {
+//     const { key, value } = createKeyValuePair(array[i]);
 
-    kv.set(key, value);
-  }
-});
+//     kv.set(key, value);
+//   }
+// });

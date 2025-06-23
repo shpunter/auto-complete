@@ -11,3 +11,7 @@ export const createKey = (str: string): string[] => {
 
   return prefixes;
 };
+
+export const createKeyValuePair = (value: string) => {
+  return { key: createKey(value), value: value };
+};

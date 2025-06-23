@@ -1,6 +1,7 @@
 import { Hono } from "jsr:@hono/hono";
 import { cors } from "jsr:@hono/hono/cors";
-import { createKey } from "./utils/utils.ts";
+import { createKey, createKeyValuePair } from "./utils/utils.ts";
+import { generate } from "./insert/generateStrings.ts";
 
 const app = new Hono();
 const kv = await Deno.openKv();
@@ -31,6 +32,18 @@ app.get("/api/search/:search", async (c) => {
   return c.json({
     list: list.map(({ value }) => value),
   });
+});
+
+app.get("/api/generate-and-insert/:number", async (c) => {
+  const { number } = c.req.param();
+  const data = await generate(+number);
+  const array = JSON.parse(data.text ?? "[]") as string[];
+
+  for (let i = 0; i < array.length; i++) {
+    const { key, value } = createKeyValuePair(array[i]);
+
+    kv.set(key, value);
+  }
 });
 
 Deno.serve({ port: 8000 }, app.fetch);
