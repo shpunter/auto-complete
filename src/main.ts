@@ -34,9 +34,8 @@ app.get("/api/search/:search", async (c) => {
   });
 });
 
-app.get("/api/generate-and-insert/:number", async (c) => {
-  const { number } = c.req.param();
-  const data = await generate(+number);
+app.get("/api/generate-and-insert/", async (c) => {
+  const data = await generate();
   const array = JSON.parse(data.text ?? "[]") as string[];
 
   for (let i = 0; i < array.length; i++) {
@@ -44,6 +43,8 @@ app.get("/api/generate-and-insert/:number", async (c) => {
 
     kv.set(key, value);
   }
+  
+  return c.json("done");
 });
 
 Deno.serve({ port: 8000 }, app.fetch);
