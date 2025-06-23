@@ -49,7 +49,9 @@ app.get("/api/generate-and-insert/:number/:type", async (c) => {
     kv.set(key, value);
   }
   
-  return c.json("done");
+  return c.json({
+    data: data.text
+  });
 });
 
 Deno.serve({ port: 8000 }, app.fetch);
