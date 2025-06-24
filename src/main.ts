@@ -24,9 +24,7 @@ app.get("/", (c) => {
 });
 
 app.get("/api/search/:search", async (c) => {
-  const kv = await Deno.openKv(
-    "https://api.deno.com/databases/eaf3aaef-2e26-4733-82b2-6075db53df34/connect",
-  );
+  const kv = await Deno.openKv();
 
   const { search } = c.req.param();
   const key = createKey(search);
@@ -39,9 +37,7 @@ app.get("/api/search/:search", async (c) => {
 });
 
 app.get("/api/delete-all", async (c) => {
-  const kv = await Deno.openKv(
-    "https://api.deno.com/databases/eaf3aaef-2e26-4733-82b2-6075db53df34/connect",
-  );
+  const kv = await Deno.openKv();
   const allEntries = await Array.fromAsync(kv.list({ prefix: [] }));
 
   for (const el of allEntries) {
