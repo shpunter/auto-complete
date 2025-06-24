@@ -3,10 +3,10 @@ export const createKey = (str: string): string[] => {
 
   const prefixes: string[] = Array(str.length);
 
-  prefixes[0] = str[0];
+  prefixes[0] = str[0].toLowerCase();
 
   for (let i = 1; i < str.length; i++) {
-    prefixes[i] = prefixes[i - 1] + str[i];
+    prefixes[i] = prefixes[i - 1] + str[i].toLowerCase();
   }
 
   return prefixes;
